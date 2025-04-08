@@ -1,0 +1,35 @@
+<h2>Appointment List</h2>
+<table border="1">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Patient Name</th>
+      <th>Animal Type</th>
+      <th>Owner Name</th>
+      <th>Owner Surname</th>
+      <th>Appointment Date</th>
+      <th>Appointment Time</th>
+      <th>Duration</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let appt of appointments">
+      <td>{{ appt.appointmentId }}</td>
+      <td>{{ appt.patientName }}</td>
+      <td>{{ appt.animalType }}</td>
+      <td>{{ appt.ownerName }}</td>
+      <td>{{ appt.ownerSurname }}</td>
+      <td>{{ appt.appointmentDate | date:'shortDate' }}</td>
+      <td>{{ appt.appointmentTime }}</td>
+      <td>{{ appt.appointmentDuration }} mins</td>
+      <td>{{ appt.appointmentDate | appointmentStatus:appt.appointmentTime }}</td>
+      <td>
+        <button (click)="viewAppointment(appt.appointmentId)">View</button>
+        <button (click)="updateAppointment(appt.appointmentId)">Update</button>
+        <button *ngIf="authService.getUserRole() === 'ADMIN'" (click)="deleteAppointment(appt.appointmentId)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

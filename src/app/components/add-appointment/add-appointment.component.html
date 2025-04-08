@@ -1,0 +1,74 @@
+<h2>Add New Appointment</h2>
+<form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label>Patient Name:</label>
+    <input type="text" formControlName="patientName">
+    <div *ngIf="appointmentForm.get('patientName')?.invalid && appointmentForm.get('patientName')?.touched" style="color:red;">Required.</div>
+  </div>
+
+  <div>
+    <label>Animal Type:</label>
+    <select formControlName="animalType">
+      <option *ngFor="let type of animalTypes" [value]="type">{{ type }}</option>
+    </select>
+    <div *ngIf="appointmentForm.get('animalType')?.invalid && appointmentForm.get('animalType')?.touched" style="color:red;">Required.</div>
+  </div>
+
+  <div>
+    <label>Owner ID Card Number:</label>
+    <input type="text" formControlName="ownerIdCardNumber">
+    <div *ngIf="appointmentForm.get('ownerIdCardNumber')?.invalid && appointmentForm.get('ownerIdCardNumber')?.touched" style="color:red;">
+      Must be numeric and end with a letter.
+    </div>
+  </div>
+
+  <div>
+    <label>Owner Name:</label>
+    <input type="text" formControlName="ownerName">
+    <div *ngIf="appointmentForm.get('ownerName')?.invalid && appointmentForm.get('ownerName')?.touched" style="color:red;">Required.</div>
+  </div>
+
+  <div>
+    <label>Owner Surname:</label>
+    <input type="text" formControlName="ownerSurname">
+    <div *ngIf="appointmentForm.get('ownerSurname')?.invalid && appointmentForm.get('ownerSurname')?.touched" style="color:red;">Required.</div>
+  </div>
+
+  <div>
+    <label>Owner Contact Number:</label>
+    <input type="text" formControlName="ownerContactNumber">
+    <div *ngIf="appointmentForm.get('ownerContactNumber')?.invalid && appointmentForm.get('ownerContactNumber')?.touched" style="color:red;">
+      Must be numeric and at least 8 characters.
+    </div>
+  </div>
+
+  <div>
+    <label>Appointment Date:</label>
+    <input type="date" formControlName="appointmentDate">
+    <div *ngIf="appointmentForm.get('appointmentDate')?.errors?.['pastDate'] && appointmentForm.get('appointmentDate')?.touched" style="color:red;">
+      Date cannot be in the past.
+    </div>
+  </div>
+
+  <div>
+    <label>Appointment Time:</label>
+    <input type="time" formControlName="appointmentTime">
+    <div *ngIf="appointmentForm.get('appointmentTime')?.invalid && appointmentForm.get('appointmentTime')?.touched" style="color:red;">Required.</div>
+  </div>
+
+  <div>
+    <label>Duration (mins):</label>
+    <select formControlName="appointmentDuration">
+      <option *ngFor="let dur of durations" [value]="dur">{{ dur }}</option>
+    </select>
+    <div *ngIf="appointmentForm.get('appointmentDuration')?.invalid && appointmentForm.get('appointmentDuration')?.touched" style="color:red;">Required.</div>
+  </div>
+
+  <div>
+    <label>Reason for Appointment:</label>
+    <textarea formControlName="reasonForAppointment"></textarea>
+    <div *ngIf="appointmentForm.get('reasonForAppointment')?.invalid && appointmentForm.get('reasonForAppointment')?.touched" style="color:red;">Required.</div>
+  </div>
+
+  <button type="submit" [disabled]="appointmentForm.invalid">Submit</button>
+</form>

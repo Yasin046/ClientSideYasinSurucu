@@ -1,0 +1,15 @@
+<h2>Appointment Details</h2>
+<div *ngIf="appointment">
+  <p><strong>Appointment ID:</strong> {{ appointment.appointmentId }}</p>
+  <p><strong>Patient Name:</strong> {{ appointment.patientName }}</p>
+  <p><strong>Animal Type:</strong> {{ appointment.animalType }}</p>
+  <p><strong>Owner ID Card Number:</strong> {{ appointment.ownerIdCardNumber }}</p>
+  <p><strong>Owner Name:</strong> {{ appointment.ownerName }}</p>
+  <p><strong>Owner Surname:</strong> {{ appointment.ownerSurname }}</p>
+  <p><strong>Owner Contact Number:</strong> {{ appointment.ownerContactNumber }}</p>
+  <p><strong>Appointment Date:</strong> {{ appointment.appointmentDate | date:'longDate' }}</p>
+  <p><strong>Appointment Time:</strong> {{ appointment.appointmentTime }}</p>
+  <p><strong>Duration:</strong> {{ appointment.appointmentDuration }} mins</p>
+  <p><strong>Reason for Appointment:</strong> {{ appointment.reasonForAppointment }}</p>
+  <p><strong>Vet Notes:</strong> {{ appointment.vetNotes }}</p>
+</div>
